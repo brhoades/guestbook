@@ -7,3 +7,13 @@
 {% else %}
   <p>There are no signatures currently.</p>
 {% endif %}
+<br /><br />
+<h3>Sign This Guestbook</h3>
+
+<form action="{% url 'sign' %}" method="post">
+  {% csrf_token %}
+  First Name: <input type="text" name="name" /><br /> 
+  Last Name:  <input type="text" name="surname" /><br /><br />
+
+  <input type="submit" value="sign" />
+</form>

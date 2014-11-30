@@ -10,6 +10,3 @@ class Signature( models.Model ):
 
     IP = models.CharField( max_length=100 )
     useragent = models.CharField( max_length=250 )
-
-
-
