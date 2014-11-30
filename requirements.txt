@@ -1,0 +1,21 @@
+12.04 packages: build-essential postgresql postgresql-server-dev-9.1 python python-pip
+python modules: django psycopg2
+
+create postgres database guestbook and grant user all rights::
+  
+  sudo su postgres
+  psql
+
+  CREATE DATABASE guestbook;
+  CREATE ROLE <user>;
+  GRANT ALL ON DATABASE guestbook TO <user>;
+  ALTER ROLE <user> WITH LOGIN;
+
+Enter cloned directory and::
+  
+  python manage.py makemigrations ui
+  python manage.py sqlmigrate ui 0001
+  python manage.py runserver 0.0.0.0:8000
+  python manage.py migrate
+
+
