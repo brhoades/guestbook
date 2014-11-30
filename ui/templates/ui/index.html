@@ -1,7 +1,7 @@
 {% if signatures_exist %}
   <ul>
-    {% for s in latest_signatures %}
-      <li>{{s.last}}, {{s.name}}</li>
+    {% for s in signatures %}
+      <li>{{s.surname}}, {{s.name}}</li>
     {% endfor %}
   </ul>
 {% else %}

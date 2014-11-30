@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from time import time
+from django.utils import timezone
 
 from ui.models import Signature
 
@@ -9,10 +9,9 @@ def index( request ):
     r = { }
     signatures = Signature.objects
 
-    if signatures.count( ) == 0:
-        r['there_are_no_signatures'] = True
-    else:
-        r['signatures'] = signatures
+    if signatures.count( ) > 0:
+        r['signatures_exist'] = True
+        r['signatures'] = signatures.order_by('-time')
 
     return render( request, 'ui/index.html', r )
 
@@ -28,5 +27,8 @@ def sign( request ):
     #              'surname': request.POST['surname'] }
     #        return render( request, 'ui/index.html', r )
     #else:
+    p = request.POST
+    Signature( name=p['name'], surname=p['surname'], IP="0.0.0.0", time=timezone.now( ) ).save( )
+
     return index( request )
 
