@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from django.http import HttpResponse
 
-# Create your views here.
+def index( request ):
+    """Main index view with something about myself.
+    """
+    return HttpResponse( "This is a page about me." )
+
