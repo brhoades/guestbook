@@ -1,0 +1,11 @@
+
+{
+  "configs" : {
+    "base" : {
+      "location" : "/home/ubuntu/guestbook/",
+        "script" : "./update.sh",
+        "branch" : "master",
+        "remote" : "origin"
+    }
+  }
+}
