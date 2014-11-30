@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.utils import timezone
 
 from ui.models import Signature
@@ -7,11 +7,20 @@ def index( request ):
     """Main index view with something about myself.
     """
     r = { }
-    signatures = Signature.objects
+    signatures = Signature.objects.order_by('-time')
+
+    ip = request.META.get( 'REMOTE_ADDR' )
+    r['has_signed'] = False
+    r['signatures_exist'] = False
 
     if signatures.count( ) > 0:
+        for s in signatures:
+            if s.IP == ip: 
+                r['has_signed'] =  True
+                break
+
         r['signatures_exist'] = True
-        r['signatures'] = signatures.order_by('-time')
+        r['signatures'] = signatures
 
     return render( request, 'ui/index.html', r )
 
@@ -19,16 +28,17 @@ def sign( request ):
     """Signs the main guestbook, takes no options as there's only one guestbook.
     """
     # Have they signed within TIMEOUT to prevent blatent abuse
-    #ip = request.META.get( 'REMOTE_ADDR' )
+    signatures = Signature.objects.order_by('-time')
+    ip = request.META.get( 'REMOTE_ADDR' )
 
-    #for s in Signature.objects:
-    #    if s.IP == ip and s.time + 60 > time.time( ): 
-    #        r = { 'name': request.POST['name'],
-    #              'surname': request.POST['surname'] }
-    #        return render( request, 'ui/index.html', r )
-    #else:
-    p = request.POST
-    Signature( name=p['name'], surname=p['surname'], IP="0.0.0.0", time=timezone.now( ) ).save( )
+    for s in signatures:
+        if s.IP == ip: 
+            r = { 'name': request.POST['name'],
+                  'surname': request.POST['surname'] }
+            return redirect( index )
+    else:
+        p = request.POST
+        Signature( name=p['name'], surname=p['surname'], IP=ip, time=timezone.now( ) ).save( )
 
-    return index( request )
+    return redirect( index )
 
