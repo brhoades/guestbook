@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+#from django.contrib.gis.geoip import GeoIP
 from django.utils import timezone
 
 from ui.models import Signature
@@ -33,8 +34,6 @@ def sign( request ):
 
     for s in signatures:
         if s.IP == ip: 
-            r = { 'name': request.POST['name'],
-                  'surname': request.POST['surname'] }
             return redirect( index )
     else:
         p = request.POST
@@ -42,3 +41,21 @@ def sign( request ):
 
     return redirect( index )
 
+def signatures( request ):
+    r = { }
+    signatures = Signature.objects.order_by('-time')
+
+    r['signatures_exist'] = False
+
+    if signatures.count( ) > 0:
+        for s in signatures:
+   #         g = GeoIP( )
+   #         geodata = g.city( s.IP )
+            geodata = { }
+            geodata['city'] = "City"
+            geodata['country_code3'] = "Country"
+            s.country = ', '.join( [ geodata['city'], geodata['country_code3'] ] )
+            r['signatures_exist'] = True
+            r['signatures'] = signatures
+
+    return render( request, 'ui/signatures.html', r )

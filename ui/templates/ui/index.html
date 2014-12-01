@@ -1,13 +1,4 @@
-{% if signatures_exist %}
-  <ul>
-    {% for s in signatures %}
-      <li>{{s.surname}}, {{s.name}}</li>
-    {% endfor %}
-  </ul>
-{% else %}
-  <p>There are no signatures currently.</p>
-{% endif %}
-<br /><br />
+This is a page about Billy Rhoades.
 
 {% if not has_signed %}
 <h3>Sign This Guestbook</h3>
@@ -20,5 +11,5 @@
   <input type="submit" value="sign" />
 </form>
 {% else %}
-<h3>View Signatures</h3>
+<a href="{% url 'signatures' %}"><h3>View Signatures</h3></a>
 {% endif %}

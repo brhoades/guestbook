@@ -1,0 +1,13 @@
+{% if signatures_exist %}
+  <ul>
+    {% for s in signatures %}
+    <li>
+      <div id="name" style="padding-right:5em; display: inline;">{{s.surname}}, {{s.name}}</div>
+      <div id="ip" alt="{{s.country}}" style="display: inline;">{{s.IP}}</div>
+    </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>There are no signatures currently.</p>
+{% endif %}
+<br /><br />
