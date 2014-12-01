@@ -1,6 +1,6 @@
 This is a page about Billy Rhoades.
 
-{% if not has_signed %}
+{% if not has_signed or sign_again %}
 <h3>Sign This Guestbook</h3>
 
 <form action="{% url 'sign' %}" method="post">
@@ -10,6 +10,7 @@ This is a page about Billy Rhoades.
 
   <input type="submit" value="sign" />
 </form>
-{% else %}
+{% endif %}
+{% if has_signed or sign_again %}
 <a href="{% url 'signatures' %}"><h3>View Signatures</h3></a>
 {% endif %}

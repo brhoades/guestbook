@@ -24,6 +24,9 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+# Can sign twice, regardless of IP?
+CAN_SIGN_AGAIN = False
+
 ALLOWED_HOSTS = []
 
 

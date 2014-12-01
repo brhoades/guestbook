@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.gis.geoip import GeoIP
 from django.utils import timezone
+from guestbook.settings import CAN_SIGN_AGAIN
 
 from ui.models import Signature
 
@@ -18,6 +19,9 @@ def index( request ):
     ip = request.META.get( 'REMOTE_ADDR' )
     r['has_signed'] = False
     r['signatures_exist'] = False
+
+    if CAN_SIGN_AGAIN:
+        r['sign_again'] = True
 
     if signatures.count( ) > 0:
         for s in signatures:
