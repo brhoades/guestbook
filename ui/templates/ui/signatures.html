@@ -1,12 +1,19 @@
 {% if signatures_exist %}
-  <ul>
+<!--- Forgive me, for I am going to use a table. -->
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>IP</th>
+      <th>Country</th>
+    </tr>
     {% for s in signatures %}
-    <li>
-      <div id="name" style="padding-right:5em; display: inline;">{{s.surname}}, {{s.name}}</div>
-      <div id="ip" alt="{{s.country}}" style="display: inline;">{{s.IP}}</div>
-    </li>
+    <tr>
+      <td>{{s.surname}}, {{s.name}}</td>
+      <td>{{s.IP}}</td>
+      <td>{{s.country}}</td>
+    </tr>
     {% endfor %}
-  </ul>
+  </table>
 {% else %}
   <p>There are no signatures currently.</p>
 {% endif %}
