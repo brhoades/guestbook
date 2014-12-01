@@ -1,4 +1,4 @@
-12.04 packages: build-essential postgresql postgresql-server-dev-9.1 python python-pip python2-geoip
+12.04 packages: build-essential postgresql postgresql-server-dev-9.1 python python-pip python-geoip
 python modules: django psycopg2
 
 create postgres database guestbook and grant user all rights::
@@ -18,6 +18,9 @@ Enter cloned directory and::
   python manage.py runserver 0.0.0.0:8000
   python manage.py migrate
 
-Grab geolite data files here::
+Grab geolite data files "GeoLite City" and "GeoLite Country" from here::
 
   http://dev.maxmind.com/geoip/legacy/geolite/
+
+And store them in the root folder, extracted, in a new folder named geo.
+

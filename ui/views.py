@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
-
-import os
-GEOIP_PATH = os.path.realpath( os.path.join( os.path.dirname( os.path.realpath( __file__ ) ), '..', 'geo' ) )
 from django.contrib.gis.geoip import GeoIP
 from django.utils import timezone
 
 from ui.models import Signature
+
+import os
+
+# Relative path to root directory
+GEOIP_PATH = os.path.realpath( os.path.join( os.path.dirname( os.path.realpath( __file__ ) ), '..', 'geo' ) )
 
 def index( request ):
     """Main index view with something about myself.
@@ -31,7 +33,6 @@ def index( request ):
 def sign( request ):
     """Signs the main guestbook, takes no options as there's only one guestbook.
     """
-    # Have they signed within TIMEOUT to prevent blatent abuse
     signatures = Signature.objects.order_by('-time')
     ip = request.META.get( 'REMOTE_ADDR' )
 
