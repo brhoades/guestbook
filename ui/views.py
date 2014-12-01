@@ -37,7 +37,7 @@ def index( request ):
 def sign( request ):
     """Signs the main guestbook, takes no options as there's only one guestbook.
     """
-    signatures = Signature.objects.order_by('-time')
+    signatures = Signature.objects.order_by( '-time' )
     ip = request.META.get( 'REMOTE_ADDR' )
 
     for s in signatures:
@@ -45,13 +45,15 @@ def sign( request ):
             return redirect( index )
     else:
         p = request.POST
-        Signature( name=p['name'], surname=p['surname'], IP=ip, time=timezone.now( ) ).save( )
+        agent = request.META.get( 'HTTP_USER_AGENT' )
+        Signature( name=p['name'], surname=p['surname'], IP=ip, time=timezone.now( ),
+                   useragent=agent ).save( )
 
     return redirect( index )
 
 def signatures( request ):
     r = { }
-    signatures = Signature.objects.order_by('-time')
+    signatures = Signature.objects.order_by( '-time' )
 
     r['signatures_exist'] = False
 

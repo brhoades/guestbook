@@ -8,6 +8,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
+############################################
+#           Application Settings           #
+# Can sign twice, regardless of IP         #
+CAN_SIGN_AGAIN = False                     #
+############################################
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -23,9 +29,6 @@ SECRET_KEY = '*749w-n*oe8il6cf8qr17y6#rb5-lq*do=fv_75#=c51o7^u30'
 DEBUG = True
 
 TEMPLATE_DEBUG = True
-
-# Can sign twice, regardless of IP?
-CAN_SIGN_AGAIN = False
 
 ALLOWED_HOSTS = []
 

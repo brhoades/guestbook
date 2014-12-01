@@ -1,7 +1,11 @@
-12.04 packages: build-essential postgresql postgresql-server-dev-9.1 python python-pip python-geoip
-python modules: django psycopg2
+Required Ubuntu 12.04 packages::
 
-create postgres database guestbook and grant user all rights::
+  build-essential postgresql postgresql-server-dev-9.1 python python-pip python-geoip
+
+Required Python 2.7.8 modules::
+  django psycopg2
+
+Create postgres database guestbook and grant user all rights::
   
   sudo su postgres
   psql
@@ -22,5 +26,4 @@ Grab geolite data files "GeoLite City" and "GeoLite Country" from here::
 
   http://dev.maxmind.com/geoip/legacy/geolite/
 
-And store them in the root folder, extracted, in a new folder named geo.
-
+And store them in the root folder, extracted, in a new folder named geo (guestbook/geo/).

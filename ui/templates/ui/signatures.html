@@ -5,12 +5,14 @@
       <th>Name</th>
       <th>IP</th>
       <th>Country</th>
+      <th>User Agent</th>
     </tr>
     {% for s in signatures %}
     <tr>
       <td>{{s.surname}}, {{s.name}}</td>
       <td>{{s.IP}}</td>
       <td>{{s.country}}</td>
+      <td>{{s.useragent}}</td>
     </tr>
     {% endfor %}
   </table>
