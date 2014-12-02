@@ -14,9 +14,9 @@ Create postgres database guestbook and grant user all rights:
   psql                                                                                                     
 
   CREATE DATABASE guestbook;                                                                               
-  CREATE ROLE <user>;                                                                                      
-  GRANT ALL ON DATABASE guestbook TO <user>;                                                               
-  ALTER ROLE <user> WITH LOGIN;
+  CREATE ROLE |user|;                                                                                      
+  GRANT ALL ON DATABASE guestbook TO |user|;                                                               
+  ALTER ROLE |user| WITH LOGIN;
   
 Enter cloned directory and:                                                     
   python manage.py makemigrations ui                                                                       
