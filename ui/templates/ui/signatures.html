@@ -1,26 +1,46 @@
-{% if signatures_exist %}
-<!--- Forgive me, for I am going to use a table. -->
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>IP</th>
-      <th>Country</th>
-      <th>User Agent</th>
-    </tr>
-    {% for s in signatures %}
-    <tr>
-      <td>{{s.surname}}, {{s.name}}</td>
-      <td>{{s.IP}}</td>
-      <td>{{s.country}}</td>
-      <td>{{s.useragent}}</td>
-    </tr>
-    {% endfor %}
-  </table>
-{% else %}
-  <p>There are no signatures currently.</p>
-{% endif %}
-<br /><br />
+<html>
+  <head>
+    <style type="text/css">
+      /* copy paste http://www.w3schools.com/css/css_table.asp
+      This should be included as an asset so django can handle this properly,
+      however I feel my remaining time could be better spent elsewhere. */
 
-<p><a href="{% url 'index' %}">Return to Main Page</a>
+      table, td, th {
+          border: 1px solid orange;
+      }
 
-<br /><br />
+      th {
+          background-color: orange;
+          color: white;
+      }
+    </style>
+  </head>
+  <body>
+    {% if signatures_exist %}
+    <!--- Forgive me, for I am going to use a table. -->
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>IP</th>
+          <th>Country</th>
+          <th>User Agent</th>
+        </tr>
+        {% for s in signatures %}
+        <tr>
+          <td>{{s.surname}}, {{s.name}}</td>
+          <td>{{s.IP}}</td>
+          <td>{{s.country}}</td>
+          <td>{{s.useragent}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p>There are no signatures currently.</p>
+    {% endif %}
+    <br /><br />
+
+    <p><a href="{% url 'index' %}">Return to Main Page</a>
+
+    <br /><br />
+  </body>
+</html>
