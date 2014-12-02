@@ -1,32 +1,8 @@
 Required Packages
 
-Required Ubuntu 12.04 packages::
-
+Required Ubuntu 12.04 packages:
   build-essential postgresql postgresql-server-dev-9.1 python python-pip python-geoip
 
-Required Python 2.7.8 modules::
-
+Required Python 2.7.8 modules:
   django psycopg2
 
-Create postgres database guestbook and grant user all rights::
-  
-  sudo su postgres
-  psql
-
-  CREATE DATABASE guestbook;
-  CREATE ROLE <user>;
-  GRANT ALL ON DATABASE guestbook TO <user>;
-  ALTER ROLE <user> WITH LOGIN;
-
-Enter cloned directory and::
-  
-  python manage.py makemigrations ui
-  python manage.py sqlmigrate ui 0001
-  python manage.py runserver 0.0.0.0:8000
-  python manage.py migrate
-
-Grab Geolite databases including "GeoLite City" and "GeoLite Country" from here::
-
-  http://dev.maxmind.com/geoip/legacy/geolite/
-
-And store them in the root folder, extracted, in a new folder named geo (guestbook/geo/).
